@@ -1,0 +1,18 @@
+# See /boot/overlays/README for all available options
+
+dtoverlay=vc4-kms-v3d
+initramfs initramfs-linux.img followkernel
+
+# Uncomment to enable bluetooth
+#dtparam=krnbt=on
+
+[pi4]
+# Run as fast as firmware / board allows
+arm_boost=1
+
+disable_overscan=1
+disable_splash=1
+
+over_voltage=6
+arm_freq=2000
+#gpu_freq=650
