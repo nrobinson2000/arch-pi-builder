@@ -1,6 +1,6 @@
 # arch-pi-builder
 
-Create bootable Arch Linux ARM installations for Raspberry Pi (64-bit)
+Create Arch Linux ARM installations for Raspberry Pi (64-bit)
 
 # Install dependencies 
 
@@ -44,3 +44,4 @@ sudo umount -Rl /mnt
 # Suggestions
 
 Copy ssh public key
+Copy wireguard config
