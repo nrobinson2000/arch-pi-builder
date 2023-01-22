@@ -36,3 +36,11 @@ passwd USERNAME
 vim /etc/hostname
 vim -p /etc/locale.gen /etc/locale.conf
 locale-gen
+
+# Exit chroot and unmount
+
+sudo umount -Rl /mnt
+
+# Suggestions
+
+Copy ssh public key

@@ -65,13 +65,3 @@ sudo cp -f $SKEL_DIR/.vimrc         $MOUNT/etc/skel
 sudo cp -f $SKEL_DIR/.bashrc        $MOUNT/etc/skel
 sudo cp -f $SKEL_DIR/.bash_aliases  $MOUNT/etc/skel
 
-
-
-# MORE
-# Copy ssh public key
-
-# Root passwd
-# Make user
-# Locales
-
-
