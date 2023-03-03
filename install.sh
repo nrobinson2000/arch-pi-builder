@@ -24,7 +24,6 @@ CHROOT="sudo arch-chroot $MOUNT"
 $PACSTRAP base archlinuxarm-keyring linux-rpi raspberrypi-bootloader
 
 # Disable initramfs
-        
 STOP_INITRAMFS="raspberrypi-stop-initramfs-4-1-any.pkg.tar.xz"
 STOP_INITRAMFS_PKG="$PKGS_DIR/$STOP_INITRAMFS"
 
