@@ -20,7 +20,7 @@ PACSTRAP="sudo pacstrap -MKC $CONF_DIR/pacman.conf $MOUNT"
 CHROOT="sudo arch-chroot $MOUNT"
 
 # Basic setup
-$PACSTRAP base
+$PACSTRAP base archlinuxarm-keyring
 
 # Disable future initramfs builds
 STOP_INITRAMFS="raspberrypi-stop-initramfs-4-1-any.pkg.tar.xz"
