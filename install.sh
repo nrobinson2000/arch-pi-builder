@@ -64,3 +64,17 @@ sudo cp -f $CONF_DIR/config.txt     $MOUNT/boot
 sudo cp -f $SKEL_DIR/.vimrc         $MOUNT/etc/skel
 sudo cp -f $SKEL_DIR/.bashrc        $MOUNT/etc/skel
 sudo cp -f $SKEL_DIR/.bash_aliases  $MOUNT/etc/skel
+
+# Locale
+echo "en_US.UTF-8 UTF-8" | sudo tee /mnt/etc/locale.gen
+echo "LANG=en_US.UTF-8" | sudo tee /mnt/etc/locale.conf
+$CHROOT locale-gen
+
+# SSH Keypair
+KEY_NAME="arch-key"
+ssh-keygen -t ed25519 -f $KEY_NAME -N ''
+sudo mkdir -p /mnt/root/.ssh
+sudo cp ${KEY_NAME}.pub /mnt/root/.ssh/authorized_keys
+
+# Hostname
+sudo cp $CONF_DIR/hostname /mnt/etc/hostname
