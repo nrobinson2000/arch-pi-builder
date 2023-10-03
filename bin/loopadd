@@ -1,3 +1,6 @@
 #!/bin/bash
+
+[[ -n "$IMG_NAME" ]] || exit
+
 sudo modprobe loop
-sudo losetup --partscan /dev/loop5 arch-arm.img
+sudo losetup --partscan /dev/loop5 "build/$IMG_NAME"

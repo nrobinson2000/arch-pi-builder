@@ -1,14 +1,17 @@
 #!/bin/bash
 
-# todo stop hardcoding this
-[ -f arch-arm.img ] && rm -f arch-arm.img
-[ -f arch-key ] && rm -f arch-key*
+# Load build settings
+source build/conf.sh
+
+# Delete artifacts
+[ -f "build/$IMG_NAME" ] && rm -f "build/$IMG_NAME"
+[ -f "build/$KEY_NAME" ] && rm -f "build/$KEY_NAME" "build/${KEY_NAME}.pub"
 
 # Create container
 bin/img-create
 
 # Partition container
-sudo fdisk arch-arm.img << EOF
+sudo fdisk "build/$IMG_NAME" << EOF
 o
 n
 p
@@ -36,4 +39,4 @@ time ./install.sh
 
 # sudo arch-chroot /mnt
 
-sha256sum arch-arm.img
+sha256sum "build/$IMG_NAME"

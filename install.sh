@@ -2,6 +2,9 @@
 
 # Pacstrap and setup Arch Linux ARM
 
+# Load build settings
+source build/conf.sh
+
 CONF_DIR="conf"
 SKEL_DIR="skel"
 PKGS_DIR="pkgs"
@@ -71,10 +74,9 @@ echo "LANG=en_US.UTF-8" | sudo tee /mnt/etc/locale.conf
 $CHROOT locale-gen
 
 # SSH Keypair
-KEY_NAME="arch-key"
-ssh-keygen -t ed25519 -f $KEY_NAME -N ''
+ssh-keygen -t ed25519 -f "build/$KEY_NAME" -N ''
 sudo mkdir -p /mnt/root/.ssh
-sudo cp ${KEY_NAME}.pub /mnt/root/.ssh/authorized_keys
+sudo cp "build/${KEY_NAME}.pub" /mnt/root/.ssh/authorized_keys
 
 # Hostname
 sudo cp $CONF_DIR/hostname /mnt/etc/hostname

@@ -1,2 +1,2 @@
-*.img*
-arch-key*
+build/*.img*
+build/arch-key*
