@@ -1,30 +1,45 @@
 # arch-pi-builder
 
-Create Arch Linux ARM installations for Raspberry Pi (64-bit)
+Create Arch Linux ARM installation for Raspberry Pi (aarch64) using a cross-arch img pacstrap
 
-# Install dependencies 
+# Install dependencies
 
 sudo pacman -S arch-install-scripts qemu-user-static-binfmt
 sudo pacman -U archlinuxarm-keyring-20140119-2-any.pkg.tar.xz
 
-# Create partitions and filesystems
+There is currently a bug with qemu-static and you need to downgrade to 8.1.0-2:
 
-Use fdisk
+yay -S downgrade
+sudo downgrade qemu-user-static qemu-user-static-binfmt
+
+```
+qemu-user-static 8.1.0-2
+qemu-user-static-binfmt 8.1.0-2
+```
+
+# Create a disk image
+
+$ bin/img-create
+
+# Create partitions
+
+$ sudo fdisk arch-arm.img
+
 Partition 1: vfat (+200M)
 Partition 2: ext4 (rest of disk)
 
-sudo mkfs.vfat /dev/sdX1
-sudo mkfs.ext4 /dev/sdX2
+# Attach loop device
 
-# Mount filesystems
+$ bin/loopadd
 
-sudo mount /dev/sdX2 /mnt
-sudo mkdir /mnt/boot
-sudo mount /dev/sdX1 /mnt/boot
+# Create filesystems
+
+$ bin/img-mkfs
+$ bin/img-mount
 
 # Install system
 
-./install.sh
+$ ./install.sh
 
 # Post install setup
 
@@ -39,9 +54,24 @@ locale-gen
 
 # Exit chroot and unmount
 
-sudo umount -Rl /mnt
+$ bin/img-umount
+$ bin/loopdel
 
-# Suggestions
+# Compress image for distribution (optional)
 
-Copy ssh public key
-Copy wireguard config
+$ sudo xz arch-arm.img --keep --verbose -T 0
+
+# Write disk image to USB
+
+$ sudo dd if=arch-arm.img of=/dev/sdX bs=512M status=progress
+
+# Resize root partition to fill USB
+
+$ sudo fdisk /dev/sdX
+$ sudo fsck /dev/sdX2
+$ sudo resize2fs /dev/sdX2
+
+# TODO
+- Create SSH keypair during setup, copy public key to image
+- Define hostname during setup
+- Auto locales
