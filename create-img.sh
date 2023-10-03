@@ -1,1 +1,1 @@
-sudo fallocate -l 2GiB -o 1024 arch-arm.img
+sudo fallocate -l 4GiB -o 1024 arch-arm.img
