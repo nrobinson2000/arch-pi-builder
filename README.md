@@ -71,7 +71,7 @@ $ sudo fdisk /dev/sdX
 $ sudo fsck /dev/sdX2
 $ sudo resize2fs /dev/sdX2
 
-# TODO
+# Features
 - Create SSH keypair during setup, copy public key to image
 - Define hostname during setup
 - Auto locales
