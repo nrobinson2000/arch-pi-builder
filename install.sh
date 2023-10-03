@@ -20,18 +20,18 @@ PACSTRAP="sudo pacstrap -MKC $CONF_DIR/pacman.conf $MOUNT"
 CHROOT="sudo arch-chroot $MOUNT"
 
 # Basic setup
-
-$PACSTRAP base archlinuxarm-keyring linux-rpi raspberrypi-bootloader
+$PACSTRAP base
 
 # Disable initramfs
 STOP_INITRAMFS="raspberrypi-stop-initramfs-4-1-any.pkg.tar.xz"
 STOP_INITRAMFS_PKG="$PKGS_DIR/$STOP_INITRAMFS"
-
 sudo cp -f "$STOP_INITRAMFS_PKG" $MOUNT/root
 $CHROOT pacman -U /root/$STOP_INITRAMFS --noconfirm
 
-# Install essential packages
+# Install kernel and bootloader
+$PACSTRAP linux-rpi raspberrypi-bootloader
 
+# Install essential packages
 PKGS="sudo openssh neofetch htop vim"
 $PACSTRAP $PKGS
 
