@@ -32,25 +32,26 @@ $CHROOT pacman -U /root/$STOP_INITRAMFS --noconfirm
 
 # Install essential packages
 
-PKGS="sudo dhcpcd openssh nss-mdns neofetch htop vim"
+PKGS="sudo openssh neofetch htop vim"
 $PACSTRAP $PKGS
 
 # Enable services
-
-$CHROOT systemctl enable dhcpcd.service
 $CHROOT systemctl enable sshd.service
-$CHROOT systemctl enable avahi-daemon.service
 $CHROOT systemctl enable systemd-timesyncd.service
+$CHROOT systemctl enable systemd-resolved.service
+$CHROOT systemctl enable systemd-networkd.service
 
+# resolv.conf
+$CHROOT ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
+# networkd
+sudo cp $CONF_DIR/ethernet.network $MOUNT/etc/systemd/network
 
 # Timezone
 $CHROOT ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 
 # sudoers config
 sudo cp -f $CONF_DIR/wheel          $MOUNT/etc/sudoers.d
-
-# MDNS config
-sudo cp -f $CONF_DIR/nsswitch.conf  $MOUNT/etc
 
 # fstab
 sudo cp -f $CONF_DIR/fstab          $MOUNT/etc
@@ -63,4 +64,3 @@ sudo cp -f $CONF_DIR/config.txt     $MOUNT/boot
 sudo cp -f $SKEL_DIR/.vimrc         $MOUNT/etc/skel
 sudo cp -f $SKEL_DIR/.bashrc        $MOUNT/etc/skel
 sudo cp -f $SKEL_DIR/.bash_aliases  $MOUNT/etc/skel
-
