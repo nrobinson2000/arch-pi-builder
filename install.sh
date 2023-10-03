@@ -78,3 +78,6 @@ sudo cp ${KEY_NAME}.pub /mnt/root/.ssh/authorized_keys
 
 # Hostname
 sudo cp $CONF_DIR/hostname /mnt/etc/hostname
+
+# Clear pacman cache
+$CHROOT rm -rf /var/cache/pacman/pkg
