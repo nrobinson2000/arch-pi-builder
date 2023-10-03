@@ -22,7 +22,7 @@ CHROOT="sudo arch-chroot $MOUNT"
 # Basic setup
 $PACSTRAP base
 
-# Disable initramfs
+# Disable future initramfs builds
 STOP_INITRAMFS="raspberrypi-stop-initramfs-4-1-any.pkg.tar.xz"
 STOP_INITRAMFS_PKG="$PKGS_DIR/$STOP_INITRAMFS"
 sudo cp -f "$STOP_INITRAMFS_PKG" $MOUNT/root
@@ -32,7 +32,7 @@ $CHROOT pacman -U /root/$STOP_INITRAMFS --noconfirm
 $PACSTRAP linux-rpi raspberrypi-bootloader
 
 # Install essential packages
-PKGS="sudo openssh neofetch htop vim"
+PKGS="sudo openssh neofetch htop vim less bash-completion"
 $PACSTRAP $PKGS
 
 # Enable services
@@ -42,7 +42,7 @@ $CHROOT systemctl enable systemd-resolved.service
 $CHROOT systemctl enable systemd-networkd.service
 
 # resolv.conf
-$CHROOT ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+sudo ln -sf /run/systemd/resolve/stub-resolv.conf /mnt/etc/resolv.conf
 
 # networkd
 sudo cp $CONF_DIR/ethernet.network $MOUNT/etc/systemd/network
