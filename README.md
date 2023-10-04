@@ -88,3 +88,11 @@ The dotfiles in /etc/skel will be copied into the user's home upon creation.
 ## Use the Pi
 
 There are many things to do with a Raspberry Pi running Arch Linux ARM. I hope you have fun.
+
+## Bonus
+
+You can create a compressed image with the following:
+
+```
+$ sudo xz build/arch-arm.img --keep --verbose -T 0
+```
