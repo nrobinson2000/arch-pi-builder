@@ -61,7 +61,7 @@ $ sudo resize2fs /dev/sdX2
 $ sync
 ```
 
-# Boot the install
+## Boot the install
 
 Insert the USB into the Raspberry Pi and connect ethernet and power.
 
@@ -87,4 +87,4 @@ The dotfiles in /etc/skel will be copied into the user's home upon creation.
 
 ## Use the Pi
 
-There are many things to do with a Raspbery Pi running Arch Linux ARM. I hope you have fun.
+There are many things to do with a Raspberry Pi running Arch Linux ARM. I hope you have fun.

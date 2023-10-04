@@ -36,7 +36,3 @@ bin/img-mount
 
 # Pacstrap and config system
 time ./install.sh
-
-# sudo arch-chroot /mnt
-
-sha256sum "build/$IMG_NAME"
