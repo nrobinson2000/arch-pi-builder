@@ -35,4 +35,4 @@ bin/img-mkfs
 bin/img-mount
 
 # Pacstrap and config system
-time ./install.sh
+time bin/install.sh
