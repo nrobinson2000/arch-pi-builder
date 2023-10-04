@@ -27,9 +27,7 @@ $PACSTRAP base archlinuxarm-keyring
 
 # Disable future initramfs builds
 STOP_INITRAMFS="raspberrypi-stop-initramfs-4-1-any.pkg.tar.xz"
-STOP_INITRAMFS_PKG="$PKGS_DIR/$STOP_INITRAMFS"
-sudo cp -f "$STOP_INITRAMFS_PKG" $MOUNT/root
-$CHROOT pacman -U /root/$STOP_INITRAMFS --noconfirm
+sudo pacstrap -MC "$CONF_DIR/pacman.conf" -U "$MOUNT" "$PKGS_DIR/$STOP_INITRAMFS"
 
 # Install kernel and bootloader
 $PACSTRAP linux-rpi raspberrypi-bootloader
