@@ -1,6 +1,4 @@
-# arch-pi-builder
-
-Create Arch Linux ARM installation for Raspberry Pi (aarch64) using a cross-arch img pacstrap
+This is the more manual way to create the image...
 
 # Install dependencies
 
@@ -68,7 +66,7 @@ $ sudo dd if=arch-arm.img of=/dev/sdX bs=512M status=progress
 # Resize root partition to fill USB
 
 $ sudo fdisk /dev/sdX
-$ sudo fsck /dev/sdX2
+$ sudo fsck -y /dev/sdX2
 $ sudo resize2fs /dev/sdX2
 
 # Features
