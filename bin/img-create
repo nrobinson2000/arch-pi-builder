@@ -1,3 +1,5 @@
 #!/bin/bash
 
-[[ -n "$IMG_NAME" ]] && sudo fallocate -l 2GiB -o 1024 "build/$IMG_NAME"
+[[ -n "$IMG_NAME" ]] || exit
+
+sudo fallocate -l 2GiB -o 1024 "build/$IMG_NAME"

@@ -1,2 +1,4 @@
 #!/bin/bash
-sudo umount -Rl /mnt
+
+sudo fuser -mks /mnt
+sudo umount -R /mnt

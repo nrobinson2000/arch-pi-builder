@@ -1,0 +1,22 @@
+#!/bin/bash
+
+[[ -n "$IMG_NAME" ]] || exit
+
+# Partition container
+sudo fdisk "build/$IMG_NAME" << EOF
+o
+n
+p
+1
+
++200M
+t
+0c
+n
+p
+2
+
+
+p
+w
+EOF
