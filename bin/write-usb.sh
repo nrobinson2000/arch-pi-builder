@@ -3,9 +3,9 @@
 # Load build settings
 source build/conf.sh
 
-DEVICE="/dev/sda"
+DEVICE="/dev/sdc"
 
-sudo cp "build/$IMG_NAME" "$DEVICE" || exit
+sudo cp -i "build/$IMG_NAME" "$DEVICE" || exit
 sync
 sudo parted -s "$DEVICE" resizepart 2 100%
 sudo fsck -y "${DEVICE}2" 
