@@ -1,0 +1,9 @@
+pkgname=mkinitcpio
+pkgver=100
+pkgrel=1
+arch=("any")
+
+package() {
+    mkdir -p $pkgdir/usr/bin
+    ln -s /usr/bin/true $pkgdir/usr/bin/mkinitcpio
+}
