@@ -33,10 +33,6 @@ echo "allow-weak-key-signatures" | sudo tee -a $MOUNT/etc/pacman.d/gnupg/gpg.con
 PKG="mkinitcpio/mkinitcpio-100-1-any.pkg.tar.zst"
 sudo pacstrap -MC "$CONF_DIR/pacman.conf" -U "$MOUNT" "$PKGS_DIR/$PKG"
 
-# Disable future initramfs builds
-PKG="raspberrypi-stop-initramfs-4-1-any.pkg.tar.xz"
-sudo pacstrap -MC "$CONF_DIR/pacman.conf" -U "$MOUNT" "$PKGS_DIR/$PKG"
-
 # Basic setup
 $PACSTRAP base archlinuxarm-keyring
 
