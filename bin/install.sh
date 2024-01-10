@@ -30,7 +30,7 @@ $PACSTRAP pacman
 echo "allow-weak-key-signatures" | sudo tee -a $MOUNT/etc/pacman.d/gnupg/gpg.conf
 
 # Disable mkinitcpio entirely
-PKG="mkinitcpio/mkinitcpio-100-1-any.pkg.tar.zst"
+PKG="mkinitcpio-dummy/mkinitcpio-dummy-2024.1-1-any.pkg.tar.zst"
 sudo pacstrap -MC "$CONF_DIR/pacman.conf" -U "$MOUNT" "$PKGS_DIR/$PKG"
 
 # Basic setup

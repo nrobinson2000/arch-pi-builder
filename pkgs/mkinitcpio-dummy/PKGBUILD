@@ -1,7 +1,9 @@
-pkgname=mkinitcpio
-pkgver=100
+pkgname=mkinitcpio-dummy
+pkgver=2024.1
 pkgrel=1
 arch=("any")
+provides=("mkinitcpio=$pkgver")
+conflicts=("mkinitcpio")
 
 package() {
     mkdir -p $pkgdir/usr/bin
